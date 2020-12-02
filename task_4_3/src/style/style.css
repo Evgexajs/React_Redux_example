@@ -1,0 +1,29 @@
+.head {
+  height: 50px;
+  background-color: #1E51BD;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 10px;
+}
+
+.head a {
+  text-decoration: none;
+  color: white;
+}
+
+.list {
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.list li {
+  list-style-type: none;
+  padding: 2px;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,24 @@
+body {
+}
+
+.head {
+    height: 50px;
+    background-color: #1E51BD;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    a {        
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.list {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    li {
+        list-style-type: none;
+        padding: 2px;
+    }
+}
