@@ -1,19 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import '../style/style.css';
-import { postsFetchData } from '../actions/dataActions';
-
-function mapStateToProps (state) {
-  return {
-    posts: state.data
-  };
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchData: url => dispatch(postsFetchData(url))
-  }
-}
+import { postsFetchData } from '../actions/postAction';
 
 function Posts ({fetchData, posts}) {
   useEffect(() => {
@@ -22,8 +10,8 @@ function Posts ({fetchData, posts}) {
 
   return (
       <div className="list">
-          {posts.map((post, index) => {
-            return <li key={index}>
+          {posts.map((post) => {
+            return <li key={post.id}>
               <div>Title is: {post.title}</div>
               <div>Body is: {post.body}</div>
 
@@ -31,6 +19,17 @@ function Posts ({fetchData, posts}) {
           })}
       </div>
     );
+}
+
+function mapStateToProps (state) {
+  console.log(state)
+  return {
+    posts: state.post
+  };
+}
+
+const mapDispatchToProps = {
+    fetchData: postsFetchData
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Posts);
