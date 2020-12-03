@@ -1,4 +1,5 @@
 import { POSTSLIST } from './actionTypes'
+import axios from 'axios';
 
 export function postsFetchDataSuccess(posts) {
     return {
@@ -7,16 +8,16 @@ export function postsFetchDataSuccess(posts) {
     };
 };
 
-export function postsFetchData(url) {
-    return (dispatch) => {
-        fetch(url)
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error(resonse.statusText)
-                }
-                return response;
-            })
-            .then(response => response.json())
-            .then(posts => dispatch(postsFetchDataSuccess(posts)))
+export function postsFetchData() {
+    return (dispatch) => {        
+        axios.get("https://jsonplaceholder.typicode.com/todos")
+        .then(response =>{
+            const posts = response.data
+            dispatch(postsFetchDataSuccess(posts))
+        })
+        .catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchFailure(errorMsg))
+        })
     };
 };

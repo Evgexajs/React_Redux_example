@@ -1,4 +1,5 @@
 import { TODOLIST } from './actionTypes'
+import axios from 'axios';
 
 export function todosFetchDataSuccess(todos) {
     return {
@@ -7,16 +8,16 @@ export function todosFetchDataSuccess(todos) {
     };
 };
 
-export function todosFetchData(url) {
-    return (dispatch) => {
-        fetch(url)
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error(resonse.statusText)
-                }
-                return response;
-            })
-            .then(response => response.json())
-            .then(todos => dispatch(todosFetchDataSuccess(todos)))
+export function todosFetchData() {
+    return (dispatch) => {        
+        axios.get("https://jsonplaceholder.typicode.com/todos")
+        .then(response =>{
+            const todos = response.data
+            dispatch(todosFetchDataSuccess(todos))
+        })
+        .catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchFailure(errorMsg))
+        })
     };
 };

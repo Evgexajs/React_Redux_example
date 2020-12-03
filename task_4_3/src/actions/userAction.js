@@ -1,4 +1,5 @@
 import { USER } from './actionTypes'
+import axios from 'axios';
 
 export function usersFetchDataSuccess(users) {
     return {
@@ -7,16 +8,16 @@ export function usersFetchDataSuccess(users) {
     };
 };
 
-export function usersFetchData(url) {
-    return (dispatch) => {
-        fetch(url)
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error(resonse.statusText)
-                }
-                return response;
-            })
-            .then(response => response.json())
-            .then(users => dispatch(usersFetchDataSuccess(users)))
+export function usersFetchData() {    
+    return (dispatch) => {        
+        axios.get("https://jsonplaceholder.typicode.com/users")
+        .then(response =>{
+            const users = response.data
+            dispatch(usersFetchDataSuccess(users))
+        })
+        .catch(error => {
+            const errorMsg = error.message
+            dispatch(fetchFailure(errorMsg))
+        })
     };
 };

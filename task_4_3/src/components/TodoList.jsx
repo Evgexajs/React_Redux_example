@@ -5,7 +5,7 @@ import { todosFetchData } from '../actions/todoAction';
 
 function Todos ({fetchData, todos}) {
   useEffect(() => {
-    fetchData("https://jsonplaceholder.typicode.com/todos")
+    fetchData()
   });
 
   return (

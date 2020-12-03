@@ -5,7 +5,7 @@ import { usersFetchData } from '../actions/userAction';
 
 function Users ({fetchData, users}) {
   useEffect(() => {
-    fetchData("https://jsonplaceholder.typicode.com/users")
+    fetchData()
   });
 
   return (

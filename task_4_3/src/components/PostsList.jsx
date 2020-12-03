@@ -5,7 +5,7 @@ import { postsFetchData } from '../actions/postAction';
 
 function Posts ({fetchData, posts}) {
   useEffect(() => {
-    fetchData("https://jsonplaceholder.typicode.com/posts")
+    fetchData()
   });
 
   return (
@@ -22,7 +22,6 @@ function Posts ({fetchData, posts}) {
 }
 
 function mapStateToProps (state) {
-  console.log(state)
   return {
     posts: state.post
   };
