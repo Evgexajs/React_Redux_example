@@ -13,6 +13,7 @@ function Users ({fetchData, users}) {
           {users.map((user) => {
             return <li key={user.id}>
               <div>Name is: {user.name}</div>
+              <div>Username is: {user.username}</div>
 
             </li>
           })}

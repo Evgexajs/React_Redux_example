@@ -12,8 +12,8 @@ function Posts ({fetchData, posts}) {
       <div className="list">
           {posts.map((post) => {
             return <li key={post.id}>
-              <div>Title is: {post.title}</div>
-              <div>Body is: {post.body}</div>
+              <div>Title: {post.title}</div>
+              <div>Body: {post.body}</div>
 
             </li>
           })}
