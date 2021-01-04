@@ -22,6 +22,21 @@ body {
   color: white;
 }
 
+.addPost {
+  background-color: white;
+  border: solid 2px #535353;
+  border-radius: 5px;
+  margin: 10px 10px 10px 0;
+}
+
+.addPost h2 {
+  text-align: center;
+}
+
+.addPost div {
+  margin: 7px;
+}
+
 .list {
   display: -webkit-box;
   display: -ms-flexbox;
