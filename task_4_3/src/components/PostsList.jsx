@@ -5,7 +5,7 @@ import { postsFetchData } from '../actions/postAction';
 import { addPostFetchData } from '../actions/addPostAction';
 import AddPost from './AddPost.jsx';
 
-function Posts ({postsFetchData, addPostFetchData, posts, post}) {
+function Posts ({postsFetchData, addPostFetchData, posts, post, error}) {
   useEffect(() => {
     postsFetchData();
   });
@@ -17,7 +17,7 @@ function Posts ({postsFetchData, addPostFetchData, posts, post}) {
     <div>Body: {post.body}</div>
     </li>)
   }
-
+  if (error.length) return <h1>{error}</h1>;
   return (
       <div className="list">
         <AddPost onSubmit={addPostFetchData}/>
@@ -37,6 +37,7 @@ function mapStateToProps (state) {
   return {
     posts: state.post,
     post: state.addPost,
+    error: state.error,
   };
 }
 

@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import '../style/style.css';
 import { todosFetchData } from '../actions/todoAction';
 
-function Todos ({fetchData, todos}) {
+function Todos ({fetchData, todos, error}) {
   useEffect(() => {
     fetchData()
   });
 
+  if (error.length) return <h1>{error}</h1>;
   return (
       <div className="list">
           {todos.map((todo) => {
@@ -22,7 +23,8 @@ function Todos ({fetchData, todos}) {
 
 function mapStateToProps (state) {
   return {
-    todos: state.todo
+    todos: state.todo,
+    error: state.error,
   };
 }
 

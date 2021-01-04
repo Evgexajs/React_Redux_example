@@ -70,4 +70,18 @@ body {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
+
+.formControl {
+  font-size: small;
+}
+
+.formControl span {
+  margin-left: 10px;
+  color: red;
+}
+
+.formControl input.error, .formControl textarea.error {
+  resize: none;
+  border: solid 2px red;
+}
 /*# sourceMappingURL=style.css.map */

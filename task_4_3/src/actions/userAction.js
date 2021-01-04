@@ -1,4 +1,4 @@
-import { USER } from './actionTypes'
+import { USER, ERROR } from './actionTypes'
 import axios from 'axios';
 
 export function usersFetchData() {    
@@ -12,8 +12,11 @@ export function usersFetchData() {
             })
         })
         .catch(error => {
-            const errorMsg = error.message
-            dispatch(fetchFailure(errorMsg))
+            const errors = error.message
+            dispatch({
+                type: ERROR,
+                errors
+            })
         })
     };
 };

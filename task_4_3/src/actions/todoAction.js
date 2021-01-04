@@ -1,4 +1,4 @@
-import { TODOLIST } from './actionTypes'
+import { TODOLIST, ERROR } from './actionTypes'
 import axios from 'axios';
 
 export function todosFetchData() {
@@ -12,8 +12,11 @@ export function todosFetchData() {
             })
         })
         .catch(error => {
-            const errorMsg = error.message
-            dispatch(fetchFailure(errorMsg))
+            const errors = error.message
+            dispatch({
+                type: ERROR,
+                errors
+            })
         })
     };
 };

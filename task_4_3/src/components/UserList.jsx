@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import '../style/style.css';
 import { usersFetchData } from '../actions/userAction';
 
-function Users ({fetchData, users}) {
+function Users ({fetchData, users, error}) {
   useEffect(() => {
     fetchData()
   });
 
+  if (error.length) return <h1>{error}</h1>;
   return (
       <div className="list">
           {users.map((user) => {
@@ -23,7 +24,8 @@ function Users ({fetchData, users}) {
 
 function mapStateToProps (state) {
   return {
-    users: state.user
+    users: state.user,
+    error: state.error,
   };
 }
 

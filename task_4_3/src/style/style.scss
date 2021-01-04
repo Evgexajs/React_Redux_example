@@ -50,3 +50,15 @@ body {
         }
     }
 }
+
+.formControl {
+    font-size: small;
+    span { 
+        margin-left: 10px;
+        color: red; 
+    }
+    & input.error, & textarea.error { 
+        resize: none;
+        border: solid 2px red; 
+    }
+};
