@@ -62,3 +62,37 @@ body {
         border: solid 2px red; 
     }
 };
+
+.users a {
+    text-decoration: none;
+    color: white;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &El {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+    &Right {
+        margin-top: 5px;
+        margin-left: 10px;
+    }
+    &Parameter {
+        color: rgb(129, 129, 129);
+    }
+
+}
+
+.back a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

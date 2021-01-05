@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import '../style/style.css';
+import { NavLink } from 'react-router-dom';
 import { usersFetchData } from '../actions/userAction';
+import '../style/style.css';
 
 function Users ({fetchData, users, error}) {
   useEffect(() => {
@@ -12,12 +13,12 @@ function Users ({fetchData, users, error}) {
   return (
       <div className="list">
           {users.map((user) => {
-            return <li key={user.id}>
-              <div>Name is: {user.name}</div>
-              <div>Username is: {user.username}</div>
-
-            </li>
-          })}
+            return (
+              <li  key={user.id}>
+                <div className="users"><NavLink to={'/user/' + user.id}>Name is: {user.name}</NavLink></div>
+                <div>Username is: {user.username}</div>
+              </li>
+          )})}
       </div>
     );
 }
