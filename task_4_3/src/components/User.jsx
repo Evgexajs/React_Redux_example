@@ -1,20 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import { usersFetchData } from '../actions/userAction';
+import { userFetchData } from '../actions/userAction';
 import '../style/style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
-function User ({fetchData, users, error, ...props}) {
+function User ({fetchData, user, error, match}) {
+    const userId = parseInt(match.params.id, 10);
     useEffect(() => {
-      fetchData()
+      fetchData(userId)
     });
-
+    
     if (error.length) return <h1>{error}</h1>;
-    const user = users[parseInt(props.match.params.id, 10) - 1];
-    let userPhone = user.phone;
-    userPhone = userPhone.substring(0, userPhone.indexOf(" ") - 1);
-    if (userPhone.length === 0) {userPhone = user.phone}
     return (
         <div className="user">
             <div>
@@ -29,7 +26,7 @@ function User ({fetchData, users, error, ...props}) {
             <div className="userEl">
                 <FontAwesomeIcon icon='phone' size="3x" />
                 <div className="userRight">
-                    <div>{userPhone}</div>
+                    <div>{user.phone}</div>
                     <div className="userParameter">Phone</div>
                 </div>
             </div>
@@ -38,7 +35,7 @@ function User ({fetchData, users, error, ...props}) {
                 <div className="userRight">
                     <div>{user.address.street + " " + user.address.suite + ", "}<br/>
                     {user.address.city + ", " + user.address.zipcode}</div>
-                    <div className="userParameter">Adress</div>
+                    <div className="userParameter">Address</div>
                 </div>
             </div>
             <div className="userEl">
@@ -56,13 +53,13 @@ function User ({fetchData, users, error, ...props}) {
 
 function mapStateToProps (state) {
   return {
-    users: state.user,
+    user: state.user,
     error: state.error,
   };
 }
 
 const mapDispatchToProps = {
-  fetchData: usersFetchData
+  fetchData: userFetchData
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(User);

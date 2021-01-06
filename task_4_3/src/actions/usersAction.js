@@ -1,14 +1,14 @@
-import { USER, ERROR } from './actionTypes'
+import { USERS, ERROR } from './actionTypes'
 import axios from 'axios';
 
-export function userFetchData(userId) {
+export function usersFetchData() {    
     return (dispatch) => {        
-        axios.get("https://jsonplaceholder.typicode.com/users/" + userId)
+        axios.get("https://jsonplaceholder.typicode.com/users")
         .then(response =>{
-            const user = response.data
+            const users = response.data
             dispatch({
-                type: USER,
-                user
+                type: USERS,
+                users
             })
         })
         .catch(error => {

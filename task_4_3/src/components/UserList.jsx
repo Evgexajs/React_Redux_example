@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom';
-import { usersFetchData } from '../actions/userAction';
+import { usersFetchData } from '../actions/usersAction';
 import '../style/style.css';
 
 function Users ({fetchData, users, error}) {
@@ -25,7 +25,7 @@ function Users ({fetchData, users, error}) {
 
 function mapStateToProps (state) {
   return {
-    users: state.user,
+    users: state.users,
     error: state.error,
   };
 }

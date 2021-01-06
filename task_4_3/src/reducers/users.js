@@ -1,8 +1,8 @@
-import { USER } from "../actions/actionTypes";
+import { USERS } from "../actions/actionTypes";
 
-export function user (state = [], action) {
+export function users (state = [], action) {
     switch (action.type) {
-        case USER:
+        case USERS:
             return action.users;
         default:
             return state;
