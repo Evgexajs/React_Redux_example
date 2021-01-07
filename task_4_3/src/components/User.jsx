@@ -12,6 +12,14 @@ function User ({fetchData, user, error, match}) {
     });
     
     if (error.length) return <h1>{error}</h1>;
+    let userPhone = user?.phone;
+    if (userPhone)
+    {
+        userPhone = userPhone.substring(0, userPhone.indexOf(" ") - 1);
+        if (userPhone.length === 0) {userPhone = user?.phone}
+    }
+    else
+        userPhone = user.phone
     return (
         <div className="user">
             <div>
@@ -26,15 +34,15 @@ function User ({fetchData, user, error, match}) {
             <div className="userEl">
                 <FontAwesomeIcon icon='phone' size="3x" />
                 <div className="userRight">
-                    <div>{user.phone}</div>
+                    <div>{userPhone}</div>
                     <div className="userParameter">Phone</div>
                 </div>
             </div>
             <div className="userEl">
                 <FontAwesomeIcon icon='address-card' size="3x" />
                 <div className="userRight">
-                    <div>{user.address.street + " " + user.address.suite + ", "}<br/>
-                    {user.address.city + ", " + user.address.zipcode}</div>
+                    <div>{user.address?.street + " " + user.address?.suite + ", "}<br/>
+                    {user.address?.city + ", " + user.address?.zipcode}</div>
                     <div className="userParameter">Address</div>
                 </div>
             </div>
