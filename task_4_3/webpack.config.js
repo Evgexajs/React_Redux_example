@@ -30,7 +30,12 @@ module.exports = {
             plugins: ["@babel/plugin-proposal-class-properties"]
           }
         }
-      }
+      },
+      {
+        test: /\.(png|jpg)$/,
+        type: "asset",
+        parser: { dataUrlCondition: { maxSize: 15000 } },
+      },
     ]
   }
 }
