@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { userFetchData } from '../actions/userAction';
-import { Route } from 'react-router-dom';
+import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import UserAlbums from './UserDetails/UserAlbums.jsx';
 import UserPosts from './UserDetails/UserPosts.jsx';
 import UserTodos from './UserDetails/UserTodos.jsx';
@@ -59,15 +59,17 @@ function User ({fetchData, user, error, match}) {
                 </div>
             </div>
             </div>
-            <div>
-                <Route path='/user/:id/albums'  component={UserAlbums}/>
-                <Route path='/user/:id/posts'  component={UserPosts}/>
-                <Route path='/user/:id/todos'  component={UserTodos}/>
-            </div>
-            <div className="user__navigation">
-                <div><NavLink to={'/user/' + userId + "/albums"}>Albums</NavLink></div>
-                <div><NavLink to={'/user/' + userId + "/posts"}>Posts</NavLink></div>
-                <div><NavLink to={'/user/' + userId + "/todos"}>Todos</NavLink></div>
+            <div className="user__right">
+                <Tabs>
+                    <TabList className="user__navigation">
+                    <Tab>Albums</Tab>
+                    <Tab>Posts</Tab>
+                    <Tab>Todos</Tab>
+                    </TabList>
+                    <TabPanel><UserAlbums userId={userId}/></TabPanel>
+                    <TabPanel><UserPosts userId={userId}/></TabPanel>
+                    <TabPanel><UserTodos userId={userId}/></TabPanel>
+                </Tabs>
             </div>
         </div>
         <div className="footer">

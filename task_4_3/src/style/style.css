@@ -95,9 +95,8 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .user__header {
@@ -124,7 +123,7 @@ body {
 
 .user__list {
   padding: 5px;
-  max-height: 65vh;
+  max-height: 60vh;
   overflow: auto;
 }
 
@@ -139,35 +138,40 @@ body {
 }
 
 .user__list li:hover {
-  color: black;
   background-color: #cccccc;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
+.user__right {
+  width: 100%;
+}
+
 .user__navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border: solid 2px #353535;
   border-radius: 5px;
-  height: 47vh;
-  min-width: 200px;
-  -ms-grid-column: 3;
-  -ms-grid-column-span: 1;
-  grid-column: 3/4;
   background-color: #535353;
-  margin-bottom: 10px;
+  margin: -5px 0 10px 0;
 }
 
-.user__navigation div {
-  margin: 10px;
+.user__navigation ul {
+  -webkit-padding-start: 0px;
+          padding-inline-start: 0px;
 }
 
-.user__navigation a {
-  text-decoration: none;
+.user__navigation li {
+  margin: 5px 0px;
+  cursor: pointer;
+  padding: 0px 10px;
+  list-style-type: none;
   color: white;
 }
 
-.user__navigation a:hover {
-  color: #818181;
+.user__navigation li:hover {
+  color: #a7a7a7;
 }
 
 .user__el {
@@ -188,6 +192,12 @@ body {
 
 .user__parameter {
   color: #818181;
+}
+
+li.react-tabs__tab--selected {
+  margin: 5px 0 -2px 0;
+  color: black;
+  background-color: #cccccc;
 }
 
 .footer {
@@ -217,7 +227,7 @@ body {
 }
 
 .todo {
-  max-height: 65vh;
+  max-height: 60vh;
   overflow: auto;
   margin: 0 5px 5px 5px;
 }

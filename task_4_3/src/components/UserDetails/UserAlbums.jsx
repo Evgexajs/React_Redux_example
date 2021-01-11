@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { userAlbumsFetchData } from '../../actions/UserDetails/userAlbumsAction';
 import '../../style/style.css';
 
-function UserAlbums ({fetchData, userAlbums, error, match}) {
-    const userId = parseInt(match.params.id, 10);
+function UserAlbums ({fetchData, userAlbums, error, userId}) {
     useEffect(() => {
       fetchData(userId)
     });

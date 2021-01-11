@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 import { userPostsFetchData } from '../../actions/UserDetails/userPostsAction';
 import '../../style/style.css';
 
-function UserPosts ({fetchData, userPosts, error, match}) {
-    const userId = parseInt(match.params.id, 10);
+function UserPosts ({fetchData, userPosts, error, userId}) {
     useEffect(() => {
       fetchData(userId)
     });

@@ -4,8 +4,7 @@ import { userTodosFetchData } from '../../actions/UserDetails/userTodosAction';
 import '../../style/style.css';
 import checkImg from "../../images/check.png"
 
-function UserTodos ({fetchData, userTodos, error, match}) {
-    const userId = parseInt(match.params.id, 10);
+function UserTodos ({fetchData, userTodos, error, userId}) {
     useEffect(() => {
       fetchData(userId)
     });
