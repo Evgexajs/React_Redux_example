@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import '../style/style.css';
 import { todosFetchData } from '../actions/todoAction';
 
-function Todos ({fetchData, todos, error}) {
+function Todos () {
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchData()
+    dispatch(todosFetchData())
   });
+
+  const todos = useSelector (state => state.todo)
+  const error = useSelector (state => state.error)
 
   if (error.length) return <h1>{error}</h1>;
   return (
@@ -21,15 +25,4 @@ function Todos ({fetchData, todos, error}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    todos: state.todo,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-    fetchData: todosFetchData
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Todos);
+export default Todos;

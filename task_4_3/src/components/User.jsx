@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userFetchData } from '../actions/userAction';
 import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import UserAlbums from './UserDetails/UserAlbums.jsx';
@@ -9,11 +9,15 @@ import '../style/style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
 
-function User ({fetchData, user, error, match}) {
+function User ({match}) {
     const userId = parseInt(match.params.id, 10);
+    const dispatch = useDispatch();
     useEffect(() => {
-      fetchData(userId)
+        dispatch(userFetchData(userId))
     });
+
+    const user = useSelector (state => state.user)
+    const error = useSelector (state => state.error)
     
     if (error.length) return <h1>{error}</h1>;
     let userPhone = user?.phone;
@@ -79,15 +83,4 @@ function User ({fetchData, user, error, match}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    user: state.user,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-  fetchData: userFetchData
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(User);
+export default User;

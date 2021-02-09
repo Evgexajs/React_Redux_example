@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom';
 import { usersFetchData } from '../actions/usersAction';
 import '../style/style.css';
 
-function Users ({fetchData, users, error}) {
+function Users () {
+  const dispatch = useDispatch();
   useEffect(() => {
-    fetchData()
+    dispatch(usersFetchData())
   });
+
+  const users = useSelector (state => state.users)
+  const error = useSelector (state => state.error)
 
   if (error.length) return <h1>{error}</h1>;
   return (
@@ -23,15 +27,4 @@ function Users ({fetchData, users, error}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    users: state.users,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-  fetchData: usersFetchData
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Users);
+export default Users;

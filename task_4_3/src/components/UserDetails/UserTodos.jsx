@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userTodosFetchData } from '../../actions/UserDetails/userTodosAction';
 import '../../style/style.css';
 import checkImg from "../../images/check.png"
 
-function UserTodos ({fetchData, userTodos, error, userId}) {
-    useEffect(() => {
-      fetchData(userId)
-    });
+function UserTodos ({userId}) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch(userTodosFetchData(userId))
+  });
+
+  const userTodos = useSelector (state => state.userTodos)
+  const error = useSelector (state => state.error)
+
 
     if (error.length) return <h1>{error}</h1>;
 
@@ -30,15 +35,4 @@ function UserTodos ({fetchData, userTodos, error, userId}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    userTodos: state.userTodos,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-  fetchData: userTodosFetchData
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(UserTodos);
+export default UserTodos;

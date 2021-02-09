@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import '../style/style.css';
 import { postsFetchData } from '../actions/postAction';
 import { addPostFetchData } from '../actions/addPostAction';
 import AddPost from './AddPost.jsx';
 
-function Posts ({postsFetchData, addPostFetchData, posts, post, error}) {
+function Posts () {
+  const dispatch = useDispatch();
   useEffect(() => {
-    postsFetchData();
+    dispatch(postsFetchData())
   });
+
+  const posts = useSelector (state => state.post)
+  const post = useSelector (state => state.addPost)
+  const error = useSelector (state => state.error)
 
   let addPost = <></>;
   if (post.id){
@@ -20,7 +25,7 @@ function Posts ({postsFetchData, addPostFetchData, posts, post, error}) {
   if (error.length) return <h1>{error}</h1>;
   return (
       <div className="list">
-        <AddPost onSubmit={addPostFetchData}/>
+        <AddPost onSubmit={dispatch(addPostFetchData)}/>
         {addPost}
           {posts.map((post) => {
             return <li key={post.id}>
@@ -33,17 +38,4 @@ function Posts ({postsFetchData, addPostFetchData, posts, post, error}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    posts: state.post,
-    post: state.addPost,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-    postsFetchData: postsFetchData,
-    addPostFetchData: addPostFetchData,
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Posts);
+export default Posts;

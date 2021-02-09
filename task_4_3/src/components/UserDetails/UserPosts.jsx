@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userPostsFetchData } from '../../actions/UserDetails/userPostsAction';
 import '../../style/style.css';
 
-function UserPosts ({fetchData, userPosts, error, userId}) {
-    useEffect(() => {
-      fetchData(userId)
-    });
+function UserPosts ({userId}) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch(userPostsFetchData(userId))
+  });
+
+  const userPosts = useSelector (state => state.userPosts)
+  const error = useSelector (state => state.error)
 
     if (error.length) return <h1>{error}</h1>;
 
@@ -26,15 +30,4 @@ function UserPosts ({fetchData, userPosts, error, userId}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    userPosts: state.userPosts,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-  fetchData: userPostsFetchData
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(UserPosts);
+export default UserPosts;

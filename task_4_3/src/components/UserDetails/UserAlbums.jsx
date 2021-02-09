@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { userAlbumsFetchData } from '../../actions/UserDetails/userAlbumsAction';
 import '../../style/style.css';
 
-function UserAlbums ({fetchData, userAlbums, error, userId}) {
+function UserAlbums ({userId}) {
+    const dispatch = useDispatch();
     useEffect(() => {
-      fetchData(userId)
+        dispatch(userAlbumsFetchData(userId))
     });
+
+    const userAlbums = useSelector (state => state.userAlbums)
+    const error = useSelector (state => state.error)
 
     if (error.length) return <h1>{error}</h1>;
 
@@ -25,15 +29,4 @@ function UserAlbums ({fetchData, userAlbums, error, userId}) {
     );
 }
 
-function mapStateToProps (state) {
-  return {
-    userAlbums: state.userAlbums,
-    error: state.error,
-  };
-}
-
-const mapDispatchToProps = {
-  fetchData: userAlbumsFetchData
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(UserAlbums);
+export default UserAlbums;
